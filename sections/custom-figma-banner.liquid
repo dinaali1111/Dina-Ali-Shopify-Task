@@ -1,0 +1,329 @@
+
+
+
+<!-- sections/custom-figma-banner.liquid -->
+
+<div class="gift-guide-banner" style="background-image: url({{ section.settings.banner_bg_image | image_url }});">
+  <div class="banner-container">
+    <div class="banner-header">
+      <div class="logo">{{ section.settings.logo_text }}</div>
+      <div class="header-nav">
+        <span>{{ section.settings.ideal_gift_text }}</span>
+        <a href="{{ section.settings.header_button_link }}" class="header-button">
+          {{- section.settings.header_button_text }} &rarr;</a
+        >
+      </div>
+    </div>
+
+    <div class="banner-main-content">
+      <h1 class="banner-heading">{{ section.settings.banner_heading }}</h1>
+      <p class="banner-text">{{ section.settings.banner_text }}</p>
+      <a href="{{ section.settings.button_link }}" class="shop-now-button">
+        <span class="button-text-wrapper">
+          {{ section.settings.button_text }}
+          <span class="arrow">&rarr;</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="tiny-title-wrapper">
+  <div class="tiny-title">{{ section.settings.tiny_title_text }}</div>
+</div>
+
+<style>
+        .gift-guide-banner {
+          width: 100%;
+          background-size: cover;
+          background-position: center;
+          color: #000;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 700px; /* Adjusted for better scaling */
+        }
+
+        .banner-container {
+          max-width: 1440px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 30px 60px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+
+        .banner-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .logo {
+          font-size: 24px;
+          font-weight: bold;
+          letter-spacing: 1px;
+        }
+
+        .header-nav {
+          display: flex;
+          align-items: center;
+          gap: 25px;
+        }
+
+        .header-nav span {
+          font-size: 14px;
+        }
+
+        .header-button {
+          background-color: #F5EEBE; /* Yellowish color from image */
+          color: #000;
+          padding: 12px 24px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 14px;
+          border: 1px solid #000;
+          transition: background-color 0.3s;
+        }
+        .header-button:hover {
+          background-color: #E0D8AC;
+        }
+
+        .banner-main-content {
+          margin-top: auto; /* Pushes content to the bottom */
+          margin-bottom: 80px; /* Space from the bottom edge */
+          max-width: 450px;
+        }
+
+        .banner-heading {
+          font-size: 58px;
+          font-weight: 600;
+          margin-bottom: 5px;
+        }
+
+        .banner-text {
+          font-size: 16px;
+          line-height: 1.7;
+          margin-bottom: 28px;
+        }
+
+     .shop-now-button {
+      background-color: #000;
+      color: #fff;
+      padding: 12px 40px;
+      text-decoration: none;
+  font-weight: 400;
+       display: inline-flex;
+      align-items: center;
+      font-size: 14px;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+        .shop-now-button::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0%;
+          height: 100%;
+          background-color: rgb(255,245,68); /* Yellow color */
+          transition: width 0.3s ease-in-out; /* Animation for width */
+          z-index: -1; /* Behind the content */
+        }
+
+        .shop-now-button:hover::before {
+          width: 100%;
+        }
+
+        .shop-now-button .button-text-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 20px; /* Space between text and arrow */
+          transition: color 0.3s ease-in-out; /* Transition for text/arrow color */
+          z-index: 2; /* Ensure text is above pseudo-element */
+        }
+
+        .shop-now-button:hover .button-text-wrapper {
+          color: #000; /* Change text and arrow color to black on hover */
+        }
+
+        .shop-now-button .arrow {
+          /* No transform on hover for the arrow */
+          transition: color 0.3s ease-in-out; /* Ensure arrow color also transitions */
+        }
+
+      .tiny-title-wrapper {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        background-color: rgb(245, 245, 245); /* Light grey background */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tiny-title {
+        font-family: 'Jost', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 13.42px;
+        letter-spacing: 0;
+        color: #010101;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+
+        @media (max-width: 768px) {
+          .gift-guide-banner {
+            min-height: 500px;
+          }
+          .banner-container {
+            padding: 20px;
+          }
+          .banner-header {
+            flex-direction: column;
+            gap: 20px;
+          }
+          .banner-main-content {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 100%;
+          }
+          .banner-heading {
+            font-size: 36px;
+          }
+          .shop-now-button {
+            margin: 0 auto; /* Center the button */
+          }
+
+
+        }
+   @media (max-width: 563px) {
+        .tiny-title {
+        font-family: 'Jost', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 10px;
+        line-height: 13.42px;
+        letter-spacing: 0;
+        color: #010101;
+        text-align: center;
+        vertical-align: middle;
+      }
+       .shop-now-button {
+      background-color: #000;
+      color: #fff;
+      padding: 12px 40px;
+      text-decoration: none;
+  font-weight: 400;
+       display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+         padding:15;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+      .logo {
+          font-size: 14px;
+          font-weight: bold;
+          letter-spacing: 1px;
+        text-align:center;
+        }
+   }
+</style>
+
+{% schema %}
+{
+  "name": "Gift Guide Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Header Content"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "text",
+      "id": "ideal_gift_text",
+      "label": "Top Right Text",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "header_button_text",
+      "label": "Header Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "header_button_link",
+      "label": "Header Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Main Banner Content"
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Main Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_text",
+      "label": "Description Text",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Shop Now Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Shop Now Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "tiny_title_text",
+      "label": "Bottom Bar Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Guide Banner",
+      "category": "Banners"
+    }
+  ]
+}
+{% endschema %}

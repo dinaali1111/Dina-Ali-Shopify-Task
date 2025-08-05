@@ -1,0 +1,103 @@
+
+{%comment %}top-announcement-bar.liquid{% endcomment %}
+<style>
+      .announcement-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f4f4f4;
+        padding: 10px 20px;
+        font-family: sans-serif;
+        position: relative;
+        z-index: 10;
+      }
+  .center {
+        text-align: left;
+
+    font-size: 24px;
+    font-weight: bold;
+
+  }
+
+      .animated-button {
+        position: relative;
+        display: inline-block;
+        padding: 8px 14px;
+        background-color: yellow;
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+        z-index: 1;
+      }
+
+      .animated-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: black;
+        z-index: 0;
+        transition: width 0.6s ease-in-out;
+      }
+
+      .animated-button:hover::before {
+        width: 100%;
+      }
+
+      .animated-button:hover {
+        color: white !important;
+      }
+
+      .animated-button span {
+        position: relative;
+        z-index: 2;
+      }
+      .burger-icon {
+        font-size: 20px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .announcement-mobile-menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        background-color: #f4f4f4;
+        z-index: 9;
+      }
+
+      .announcement-mobile-menu.show {
+        display: flex;
+      }
+
+
+
+      @media (max-width: 568px) {
+        .left,
+        .right {
+          flex: 0;
+          width: 20%;
+          display: flex;
+          align-items: center;
+        }
+
+        .center {
+          text-align: center;
+        }
+
+        .burger-icon {
+          display: block;
+        }
+
+        .right {
+          display: none;
+        }
+      }
+</style>
+

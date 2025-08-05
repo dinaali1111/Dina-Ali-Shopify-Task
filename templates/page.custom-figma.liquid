@@ -1,0 +1,11 @@
+
+{% layout 'custom-figma' %}
+{% comment %}page.custom-figma{% endcomment %}
+{{ 'custom-figma.css' | asset_url | stylesheet_tag }}
+{{ 'custom-figma.js' | asset_url | script_tag }}
+
+<main>
+  {% section 'top-announcement-bar' %}
+  {% section 'custom-figma-banner' %}
+  {% section 'custom-figma-grid' %}
+</main> 

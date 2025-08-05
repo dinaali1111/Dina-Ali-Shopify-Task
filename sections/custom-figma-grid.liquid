@@ -1,0 +1,182 @@
+
+<!-- sections/custom-figma-grid.liquid -->
+<div class="custom-grid-section">
+  <div class="grid-container">
+    <h2 class="grid-heading">{{ section.settings.grid_heading }}</h2>
+    <div class="product-grid">
+      {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product_handle] %}
+        {% if product != blank %}
+          <div
+            class="product-item"
+            data-product-id="{{ product.id }}"
+            data-product-title="{{ product.title }}"
+            data-product-description="{{ product.description | strip_html | escape }}"
+            data-product-price="{{ product.price | money }}"
+            data-product-image="{{ product.featured_image | img_url: '500x' }}"
+          >
+            <div class="product-image-container">
+              <img src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}">
+              <div class="product-overlay">
+                <button class="product-popup-trigger" data-product-handle="{{ product.handle }}">
+                  <span class="popup-circle">+</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Popup Modal -->
+<div id="product-popup" class="product-popup">
+  <div class="popup-content">
+    <span class="popup-close">&times;</span>
+    <div class="popup-body two-column-popup">
+      <div class="popup-left">
+        <img id="popup-product-image" class="popup-product-image" src="" alt="">
+      </div>
+      <div class="popup-right">
+        <h3 id="popup-product-title" class="popup-product-title"></h3>
+        <p id="popup-product-price" class="popup-product-price"></p>
+        <p id="popup-product-description" class="popup-product-description"></p>
+        <!-- Color Options -->
+      </div>
+    </div>
+
+    <div class="color-buttons">
+      <label for="popup-size">color:</label>
+      <button class="color-option" data-color="black">Black</button>
+      <button class="color-option" data-color="gray">Gray</button>
+    </div>
+
+    <!-- Size Selector -->
+    <div id="size-selector" class="variant-selector">
+      <label for="popup-size">Size:</label>
+      <select id="popup-size">
+        <option value="">Choose size</option>
+        <option value="xs">XS</option>
+        <option value="s">S</option>
+        <option value="m">M</option>
+        <option value="l">L</option>
+        <option value="xl">XL</option>
+      </select>
+    </div>
+
+    <button id="add-to-cart-btn" class="add-to-cart-btn">Add to Cart →</button>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script src="{{ 'custom-figma.js' | asset_url }}"></script>
+
+<style>
+    .grid-heading {
+    text-align: left;
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #000;
+  }
+    .two-column-popup {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .popup-left, .popup-right {
+      flex: 1;
+    }
+
+    .color-buttons {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .color-option {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #000;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 0;
+    }
+
+    .color-option.active {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .add-to-cart-btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      width: 100%;
+      border-radius: 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .two-column-popup {
+        flex-direction: column;
+      }
+
+      .popup-left, .popup-right {
+        width: 100%;
+      }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Grid Popup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "grid_heading",
+      "label": "Grid Heading",
+      "default": "Tisso Vision In The Wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_handle",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Grid Popup",
+      "category": "Custom",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}
