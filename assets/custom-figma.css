@@ -125,7 +125,6 @@ header,
   border-radius: 10px;
 }
 
-/* زرار الأنيميشن */
 .button-primary {
   display: inline-block;
   padding: 15px 30px;
@@ -150,7 +149,7 @@ header,
   left: -100%;
   width: 100%;
   height: 100%;
-  background-color: #fff544;
+  background-color: #ff4444ff;
   transition: left 0.5s ease;
   z-index: -1;
 }
