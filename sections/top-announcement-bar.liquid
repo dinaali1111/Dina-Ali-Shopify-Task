@@ -1,103 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Announcement Bar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-{%comment %}top-announcement-bar.liquid{% endcomment %}
-<style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .announcement-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f4f4f4;
+      padding: 15px 20px;
+      position: relative;
+    }
+
+    .center {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .center-text {
+      margin-left: 25%; 
+      font-size: 16px;
+      color: #333;
+    }
+
+    .right {
+      margin-left: auto;
+    }
+
+    .animated-button {
+      position: relative;
+      display: inline-block;
+      padding: 8px 14px;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      overflow: hidden;
+      transition: color 0.4s ease-in-out;
+      z-index: 1;
+     background-color: rgb(255,245,69);
+    }
+
+    .animated-button::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background-color: black;
+      z-index: -1;
+      transition: width 0.4s ease-in-out;
+
+    }
+
+    .animated-button:hover::before {
+      width: 100%;
+    }
+
+    .animated-button:hover {
+      color: white;
+    }
+
+    .burger-icon {
+      font-size: 22px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .announcement-mobile-menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f4;
+      padding: 10px 20px;
+    }
+
+    .announcement-mobile-menu.show {
+      display: flex;
+    }
+
+    /* ✅ موبايل */
+    @media (max-width: 615px) {
       .announcement-bar {
-        display: flex;
+        flex-direction: row-reverse;
         justify-content: space-between;
-        align-items: center;
-        background-color: #f4f4f4;
-        padding: 10px 20px;
-        font-family: sans-serif;
-        position: relative;
-        z-index: 10;
       }
-  .center {
-        text-align: left;
 
-    font-size: 24px;
-    font-weight: bold;
+      .burger-icon {
+        display: block;
+      }
 
+      .center-text,
+      .right {
+        display: none;
+      }
+
+      .center {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="announcement-bar">
+  <!-- اللوجو عاليمين -->
+  <div class="center">TISSO VISON</div>
+
+  <!-- النص في الشاشات الكبيرة -->
+  <div class="center-text">Find the ideal gift for your loved ones.</div>
+
+  <!-- الزرار -->
+  <div class="right">
+
+    <a class="animated-button" href="/collections/gifts"><span>CHOOSE GIFT →</span></a>
+  </div>
+
+  <!-- البرجر منيو -->
+  <div class="burger-icon" onclick="toggleAnnouncementMenu()">☰</div>
+</div>
+
+<!-- القايمة في الموبايل -->
+<div class="announcement-mobile-menu" id="announcementMenu">
+    <p>Find the ideal gift for your loved ones.</p>
+
+  <a class="animated-button" href="/collections/gifts"><span>CHOOSE GIFT →</span></a>
+</div>
+
+<script>
+  function toggleAnnouncementMenu() {
+    const menu = document.getElementById("announcementMenu");
+    const icon = document.querySelector(".burger-icon");
+    menu.classList.toggle("show");
+    icon.textContent = menu.classList.contains("show") ? "✕" : "☰";
   }
 
-      .animated-button {
-        position: relative;
-        display: inline-block;
-        padding: 8px 14px;
-        background-color: yellow;
-        color: black;
-        font-weight: bold;
-        text-decoration: none;
-        overflow: hidden;
-        transition: all 0.5s ease-in-out;
-        z-index: 1;
-      }
+  window.addEventListener("resize", () => {
+    const menu = document.getElementById("announcementMenu");
+    const icon = document.querySelector(".burger-icon");
+    if (window.innerWidth > 568) {
+      menu.classList.remove("show");
+      icon.textContent = "☰";
+    }
+  });
+</script>
 
-      .animated-button::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: black;
-        z-index: 0;
-        transition: width 0.6s ease-in-out;
-      }
-
-      .animated-button:hover::before {
-        width: 100%;
-      }
-
-      .animated-button:hover {
-        color: white !important;
-      }
-
-      .animated-button span {
-        position: relative;
-        z-index: 2;
-      }
-      .burger-icon {
-        font-size: 20px;
-        cursor: pointer;
-        display: none;
-      }
-
-      .announcement-mobile-menu {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 20px;
-        background-color: #f4f4f4;
-        z-index: 9;
-      }
-
-      .announcement-mobile-menu.show {
-        display: flex;
-      }
-
-
-
-      @media (max-width: 568px) {
-        .left,
-        .right {
-          flex: 0;
-          width: 20%;
-          display: flex;
-          align-items: center;
-        }
-
-        .center {
-          text-align: center;
-        }
-
-        .burger-icon {
-          display: block;
-        }
-
-        .right {
-          display: none;
-        }
-      }
-</style>
+</body>
+</html>
 

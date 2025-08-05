@@ -1,27 +1,24 @@
-
-
-
 //custom-figma.js
 document.addEventListener("DOMContentLoaded", function () {
   // Color selection
-  const colorButtons = document.querySelectorAll(".color-option");
-  colorButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      colorButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
+  const colorButtons = document.querySelectorAll('.color-option');
+  colorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      colorButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
     });
   });
 
   // Size selection
-  const sizeButtons = document.querySelectorAll(".size-option");
-  sizeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      sizeButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
+  const sizeButtons = document.querySelectorAll('.size-option');
+  sizeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      sizeButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
     });
   });
 
-  // Popup logic 
+  // Popup logic (فتح وغلق)
   const popup = document.getElementById("product-popup");
   const popupImage = document.getElementById("popup-product-image");
   const popupTitle = document.getElementById("popup-product-title");
@@ -49,20 +46,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   addToCartBtn.addEventListener("click", function () {
-    const selectedColor = document.querySelector(".color-option.active")
-      ?.dataset.color;
-    const selectedSize = document.querySelector(".size-option.active")?.dataset
-      .size;
+    const selectedColor = document.querySelector('.color-option.active')?.dataset.color;
+    const selectedSize = document.querySelector('.size-option.active')?.dataset.size;
 
     if (!selectedColor || !selectedSize) {
       alert("Please select both color and size.");
       return;
     }
 
-    alert(
-      `Added to cart: ${popupTitle.textContent} | Color: ${selectedColor} | Size: ${selectedSize}`
-    );
+    alert(`Added to cart: ${popupTitle.textContent} | Color: ${selectedColor} | Size: ${selectedSize}`);
     popup.style.display = "none";
     document.body.style.overflow = "auto";
   });
 });
+
+
